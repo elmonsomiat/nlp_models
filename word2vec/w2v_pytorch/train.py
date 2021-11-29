@@ -1,9 +1,8 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-
-from word2vec.w2v_pytorch.model import Word2VecTrainer
-from word2vec.w2v_pytorch.utils import EPOCHS, LR, MAX_EARLY_STOP, EMBEDDING_SIZE
+from w2v_pytorch.model import Word2VecTrainer
+from w2v_pytorch.utils import EPOCHS, LR, MAX_EARLY_STOP, EMBEDDING_SIZE
 
 
 

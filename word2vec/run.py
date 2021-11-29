@@ -1,27 +1,35 @@
 import argparse
 import pickle
 import torch
-from word2vec.w2v_pytorch.train import train
-from word2vec.w2v_pytorch.predict import predict
-from word2vec.w2v_pytorch.utils import build_context_target_list, clean_and_split_text
+from w2v_pytorch.train import train
+from w2v_pytorch.predict import predict
+from w2v_pytorch.utils import build_context_target_list, clean_and_split_text
 
 
 def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     parser = argparse.ArgumentParser(description='Train word2vec on selected text.')
-    parser.add_argument('--text', type=str, help='Text to train on if no file is passed')
+    parser.add_argument('--text', type=str, help='Text to train on if no file is passed', default=None)
+    parser.add_argument('--file', type=str, help='File with text', default=None)
     parser.add_argument('--train', type=int, default=1)
-    # TODO: Allow file to be passed
     # TODO: Allow device to be passed
     parser.add_argument('--epochs', type=int, default=10)
     parser.add_argument('--window_size', type=int, default=3)
+
+
+
     args = parser.parse_args()
-    text_list = clean_and_split_text(args.text)
+    if args.file:
+        file = open(args.file, "r")
+        text = file.read()
+    else:
+        text = args.text
+    text_list = clean_and_split_text(text)
     if args.train:
 
         dict_word_to_index = {word: i for i, word in enumerate(set(text_list))}
-        outfile = open("./word_to_index.pkl", "wb")
+        outfile = open("../word_to_index.pkl", "wb")
         pickle.dump(dict_word_to_index, outfile)
         context_list = build_context_target_list(text_list, args.window_size)
 
@@ -33,7 +41,7 @@ def main():
         torch.save(model.state_dict(), './model.pt')
 
     else:
-        dict_word_to_index = pickle.load(open("./word_to_index.pkl", "rb"))
+        dict_word_to_index = pickle.load(open("../word_to_index.pkl", "rb"))
         result = predict(context_size=args.window_size,
                          context=text_list,
                          path='./model.pt',

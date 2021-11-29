@@ -1,13 +1,5 @@
 # nlp_models
 Summary of list of nlp models with TF and Pytorch
 
-# Word2Vec
-
-Example 
-```python
- python run_w2v_pytorch.py --text  "Here kids will write everyone's wonderful long text"
-```
-For a prediction
-```python
- python run_w2v_pytorch.py --text  "Here kids will write everyone's long text" --train 0
-```
+This repo contains multiple modules. Make sure you either `cd` into the right directory or you
+ add the path of interest to you python env.

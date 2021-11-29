@@ -2,10 +2,10 @@ import nltk
 from nltk.corpus import stopwords
 import string
 
-EPOCHS = 10
+EPOCHS = 100
 MAX_EARLY_STOP = 5
-EMBEDDING_SIZE = 10
-LR = 0.01
+EMBEDDING_SIZE = 100
+LR = 0.001
 
 
 def build_context_target_list(text_list, window_size=3):
