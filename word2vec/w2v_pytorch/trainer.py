@@ -1,6 +1,7 @@
 import torch.nn.functional as F
 import torch.nn as nn
 
+
 class Word2VecTrainer(nn.Module):
 
     def __init__(self, emb_size, vocab_size):
