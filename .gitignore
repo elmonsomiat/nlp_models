@@ -3,3 +3,4 @@ env/
 *.pt
 *.pyc
 __pycache__/
+*.pkl
