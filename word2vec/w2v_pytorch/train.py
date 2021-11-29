@@ -29,7 +29,8 @@ def train(context_list,
     model = Word2VecTrainer(context_size, embedding_size, vocab_size)
     model.to(device)
     loss_func = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=lr)
+    # optimizer = optim.Adam(model.parameters(), lr=lr)
+    optimizer = optim.SGD(model.parameters(), lr=lr)
 
     stop_count = 0
     for step in range(epochs):

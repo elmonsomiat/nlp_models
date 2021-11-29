@@ -3,7 +3,7 @@ import pickle
 import torch
 from word2vec.w2v_pytorch.train import train
 from word2vec.w2v_pytorch.predict import predict
-from word2vec.w2v_pytorch.utils import build_context_target_list
+from word2vec.w2v_pytorch.utils import build_context_target_list, clean_and_split_text
 
 
 def main():
@@ -17,7 +17,7 @@ def main():
     parser.add_argument('--epochs', type=int, default=10)
     parser.add_argument('--window_size', type=int, default=3)
     args = parser.parse_args()
-    text_list = args.text.split()
+    text_list = clean_and_split_text(args.text)
     if args.train:
 
         dict_word_to_index = {word: i for i, word in enumerate(set(text_list))}

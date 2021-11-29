@@ -5,9 +5,9 @@ Summary of list of nlp models with TF and Pytorch
 
 Example 
 ```python
- python run_w2v_pytorch.py --text  "Here I will write my very long text"
+ python run_w2v_pytorch.py --text  "Here kids will write everyone's wonderful long text"
 ```
 For a prediction
 ```python
- python run_w2v_pytorch.py --text  "Here I will my very long" --train 0
+ python run_w2v_pytorch.py --text  "Here kids will write everyone's long text" --train 0
 ```
