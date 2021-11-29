@@ -4,8 +4,8 @@ import string
 
 EPOCHS = 1000
 MAX_EARLY_STOP = 5
-EMBEDDING_SIZE = 20
-LR = 0.001
+EMBEDDING_SIZE = 50
+LR = 0.01
 
 
 def build_context_target_list(text_list, window_size=3):
