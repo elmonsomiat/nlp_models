@@ -15,5 +15,5 @@ For a prediction
 
 Find similar words
 ```
-python similar_search.py --text "kid" 
+python similar_search.py --text "shoes" 
 ```
