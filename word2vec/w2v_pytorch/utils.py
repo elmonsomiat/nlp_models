@@ -2,9 +2,9 @@ import nltk
 from nltk.corpus import stopwords
 import string
 
-EPOCHS = 100
+EPOCHS = 1000
 MAX_EARLY_STOP = 5
-EMBEDDING_SIZE = 100
+EMBEDDING_SIZE = 20
 LR = 0.001
 
 
