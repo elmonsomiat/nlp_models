@@ -3,7 +3,9 @@ import argparse
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from .trainer import Word2VecTrainer
+
+from word2vec.w2v_pytorch.model import Word2VecTrainer
+
 
 EPOCHS = 10
 MAX_EARLY_STOP = 3
@@ -30,7 +32,7 @@ def train(context_list, dict_word_to_index, device, lr=LR, epochs=EPOCHS, max_ea
     stop_count = 0
     for step in range(epochs):
         losses = []
-        for context, target in context_list:
+        for target, context in context_list:
             context_tensor = torch.tensor([dict_word_to_index[w] for w in context],
                                           dtype=torch.long,
                                           device=device)
@@ -77,26 +79,8 @@ def build_context_target_list(text_list, window_size=3):
         else:
             context_.extend(text_list[i + 1: i + window_size + 1])
 
-        context_list.append((word, context_, i))
+        context_list.append((word, context_))
     return context_list
 
 
-def main():
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    parser = argparse.ArgumentParser(description='Train word2vec on selected text.')
-    parser.add_argument('--text', type=str, help='Text to train on if no file is passed')
-    # TODO: Allow file to be passed
-    # TODO: Allow device to be passed
-    parser.add_argument('--epochs', type=int)
-    parser.add_argument('--window_size', type=int)
-    args = parser.parse_args()
-    text_list = args.text.split()
-    dict_word_to_index = {word: i for i, word in enumerate(set(text_list))}
-    context_list = build_context_target_list(text_list, args.window_size)
-    model = train(context_list, dict_word_to_index, epochs=args.epochs, device=device)
-    torch.save(model.state_dict(), './model.pt')
-
-
-if __name__ == '__main__':
-    main()
