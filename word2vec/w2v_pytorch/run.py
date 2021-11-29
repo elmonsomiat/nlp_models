@@ -11,7 +11,7 @@ EMBEDDING_SIZE = 10
 LR = 0.001
 
 
-def train(context_list, dict_word_to_index, lr=LR, epochs=EPOCHS, max_early_stop=MAX_EARLY_STOP, device):
+def train(context_list, dict_word_to_index, device, lr=LR, epochs=EPOCHS, max_early_stop=MAX_EARLY_STOP):
     '''
 
     Args:
